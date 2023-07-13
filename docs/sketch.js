@@ -47,8 +47,8 @@ function draw() {
     }
   }else{
     for(let i = 0; i < layer; i ++) {
-      worldX[i] += 2 * rotationRateX / (10 - 2 * i);
-      worldY[i] += 2 * rotationRateZ / (10 - 2 * i);
+      worldX[i] += rotationRateX / (5 - i);
+      worldY[i] += rotationRateZ / (5 - i);
     }
   }
   
