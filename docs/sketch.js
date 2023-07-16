@@ -8,6 +8,8 @@ var worldY = new Array(layer);
 let touchIsDown = false;
 let enidingBool;
 
+window.addEventListener("load", requestMotionPermission);
+
 function setup() {
   const canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("canvas-container");
@@ -94,7 +96,7 @@ function handleMotion(event) {
   rotationRateZ = event.rotationRate.alpha; // Z軸回転速度
 }
 
-window.onload = function requestMotionPermission() {
+function requestMotionPermission() {
   if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
       .then((state) => {
