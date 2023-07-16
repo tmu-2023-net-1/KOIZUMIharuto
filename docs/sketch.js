@@ -8,7 +8,6 @@ var worldY = new Array(layer);
 let touchIsDown = false;
 let enidingBool;
 
-window.addEventListener("load", requestMotionPermission);
 
 function setup() {
   const canvas = createCanvas(windowWidth, windowHeight);
