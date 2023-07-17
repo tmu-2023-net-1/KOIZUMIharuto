@@ -88,11 +88,7 @@ function setup() {
   storyWidth = textWidth(story);
   
  
-  if(isSmartPhone()) {
-    rotationButton = createButton("目を覚ますwithスマフォイ");
-  }else{
-    rotationButton = createButton("目を覚ますwithパソパソ");
-  }
+    rotationButton = createButton("目を覚ます");
   rotationButton.position(width / 2 - rotationButton.width / 2, height / 2 - rotationButton.height / 2);
   rotationButton.mousePressed(function() {
     requestMotionPermission();
