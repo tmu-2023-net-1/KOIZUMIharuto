@@ -30,8 +30,9 @@ function setup() {
   rotationButton.position(width / 2 - rotationButton.width / 2, 10);
   // rotationButton.mousePressed(requestMotionPermission);
   rotationButton.mousePressed(function() {
-    window.open("https://www.google.com/");
+    //wait requestMotionPermission  and after that open google.com
     requestMotionPermission();
+    window.open("https://www.google.com/");
   });
   for(let i = 0; i < layer; i ++) {
     worldX[i] = width / 2;
