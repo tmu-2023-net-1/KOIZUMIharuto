@@ -196,7 +196,7 @@ function draw() {
   stroke(150);
   line(0,worldY[0]+65,width,worldY[0]+65);
 
-  if(-(worldX[0] - prorogueWidth/2) > textWidth(prorogue) + width) {
+  if(-(worldX[0] + prorogueWidth/2) > textWidth(story) + width) {
     if(exitButtonX > width / 2) {
       exitButtonX -= 3;
       exitButton.position(exitButtonX, height / 2 - exitButton.height / 2);
