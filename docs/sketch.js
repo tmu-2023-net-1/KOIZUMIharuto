@@ -32,22 +32,47 @@ let footprintHeight;
 let exitButtonX = 0;
 const myURL = new URL(location.href);
 function preload(){
-  // leftImg = loadImage("images/left.png");
-  // rightImg = loadImage("images/right.png");
   footprint = loadImage("images/right.png");
 }
 
+function isSmartPhone() {
+  // UserAgentからのスマホ判定
+  if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+const buttonOpen = document.getElementsByClassName('modalOpen')[0];
+const modal = document.getElementsByClassName('modal')[0];
+const buttonClose = document.getElementsByClassName('modalClose')[0];
+const body = document.getElementsByTagName('body')[0];
+// ボタンがクリックされた時
+if(!isSmartPhone()) {
+  modal.style.display = 'block';
+  body.classList.add('open');
+}
+
+// バツ印がクリックされた時
+buttonClose.addEventListener('click',function(){
+  modal.style.display = 'none';
+  body.classList.remove('open');
+});
+
+// モーダルコンテンツ以外がクリックされた時
+modal.addEventListener('click', function(){ 
+    modal.style.display = 'none';
+    body.classList.remove('open');
+});
+
 function setup() {
 
-  function isSmartPhone() {
-    // UserAgentからのスマホ判定
-    if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-  console.log(isSmartPhone());
+  
+
+
+
 
   const canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("canvas-container");

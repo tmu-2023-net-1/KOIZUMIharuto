@@ -8,7 +8,22 @@
   <script src="sketch.js" defer></script>
   <title>白い廊下</title>
 </head>
-<body>
+<body onload="openModal();">
+  <button  class="button modalOpen">Click Me</button>
+  <div class="modal">
+    <div class="modal-inner">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>閲覧デバイスについて</h1>
+        <span class="modalClose">×</span>
+      </div>
+      <div class="modal-body">
+        <p>本サイトはスマートフォンでの閲覧を前提としたギミックを使用しております。<br>
+        万が一パソコンでご覧になられる場合は、十字キーで左右方向へページを移動できるため、そちらでお楽しみください。</p>
+      </div>
+    </div>
+    </div>
+ </div>
   <div id="canvas-container"></div>
 </body>
 </html>
