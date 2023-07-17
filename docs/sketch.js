@@ -28,12 +28,12 @@ function setup() {
   
   rotationButton = createButton("Rotation Permission");
   rotationButton.position(width / 2 - rotationButton.width / 2, 10);
-  // rotationButton.mousePressed(requestMotionPermission);
-  rotationButton.mousePressed(function() {
-    //wait requestMotionPermission  and after that open google.com
-    requestMotionPermission();
-    window.open("https://www.google.com/");
-  });
+  rotationButton.mousePressed(requestMotionPermission);
+  // rotationButton.mousePressed(function() {
+  //   //wait requestMotionPermission  and after that open google.com
+  //   requestMotionPermission();
+  //   window.open("https://www.google.com/");
+  // });
   for(let i = 0; i < layer; i ++) {
     worldX[i] = width / 2;
     worldY[i] = height / 2;
@@ -150,6 +150,7 @@ function requestMotionPermission() {
       .then((state) => {
         if (state === 'granted') {
           window.addEventListener('devicemotion', handleMotion);
+          window.open("https://www.google.com/");
         } else {
           console.log('Permission denied');
         }
