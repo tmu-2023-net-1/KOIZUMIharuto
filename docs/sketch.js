@@ -22,33 +22,17 @@ function setup() {
   enidingBool = false;
   startTime = 0;
 
-  //check DeviceMotion permission is granted or not
-  if (typeof DeviceMotionEvent.requestPermission === 'function') {
-    DeviceMotionEvent.requestPermission()
-      .then((state) => {
-        if (state !== 'granted') {
-          rotationButton = createButton("Rotation Permission");
-          rotationButton.position(width / 2 - rotationButton.width / 2, 10);
-          rotationButton.mousePressed(requestMotionPermission);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
   
-  // navigator.permissions.query({name:'devicemotion'}).then(function(permissionStatus) {
-  //   if(permissionStatus.state != 'granted') {
-      // rotationButton = createButton("Rotation Permission");
-      // rotationButton.position(width / 2 - rotationButton.width / 2, 10);
-      // rotationButton.mousePressed(requestMotionPermission);
-  //   }
-    
-  // });
   
-  // rotationButton = createButton("Rotation Permission");
-  // rotationButton.position(width / 2 - rotationButton.width / 2, 10);
+ 
+  
+  rotationButton = createButton("Rotation Permission");
+  rotationButton.position(width / 2 - rotationButton.width / 2, 10);
   // rotationButton.mousePressed(requestMotionPermission);
+  rotationButton.mousePressed(function() {
+    window.open("https://www.google.com/");
+    requestMotionPermission();
+  });
   for(let i = 0; i < layer; i ++) {
     worldX[i] = width / 2;
     worldY[i] = height / 2;
@@ -132,7 +116,6 @@ function draw() {
           let nextButton = createButton("Next");
           nextButton.position(width / 2 - nextButton.width / 2, height / 2 - nextButton.height / 2);
           nextButton.mousePressed(function() {
-            //reload this page
             location.reload();
             // window.open("https://www.google.com/");
           });
