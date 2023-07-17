@@ -38,6 +38,17 @@ function preload(){
 }
 
 function setup() {
+
+  function isSmartPhone() {
+    // UserAgentからのスマホ判定
+    if (navigator.userAgent.match(/iPhone|Android.+Mobile/)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  console.log(isSmartPhone());
   const canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("canvas-container");
   textAlign(CENTER, CENTER);
