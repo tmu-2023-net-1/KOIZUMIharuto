@@ -49,10 +49,25 @@ const buttonOpen = document.getElementsByClassName('modalOpen')[0];
 const modal = document.getElementsByClassName('modal')[0];
 const buttonClose = document.getElementsByClassName('modalClose')[0];
 const body = document.getElementsByTagName('body')[0];
-// ボタンがクリックされた時
-if(!isSmartPhone()) {
-  modal.style.display = 'block';
-  body.classList.add('open');
+
+
+const keyName = 'visited';
+const keyValue = true;
+
+if (!sessionStorage.getItem(keyName)) {
+    //sessionStorageにキーと値を追加
+    sessionStorage.setItem(keyName, keyValue);
+
+    if(!isSmartPhone()) {
+      modal.style.display = 'block';
+      body.classList.add('open');
+    }
+    
+
+} else {
+    //ここに通常アクセス時の処理
+    console.log("訪問済みです");
+
 }
 
 // バツ印がクリックされた時
