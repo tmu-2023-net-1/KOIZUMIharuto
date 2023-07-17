@@ -47,8 +47,8 @@ function setup() {
       return false;
     }
   }
-
   console.log(isSmartPhone());
+
   const canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("canvas-container");
   textAlign(CENTER, CENTER);
@@ -63,8 +63,11 @@ function setup() {
   storyWidth = textWidth(story);
   
  
-  
-  rotationButton = createButton("目を覚ます");
+  if(isSmartPhone()) {
+    rotationButton = createButton("目を覚ますwithスマフォイ");
+  }else{
+    rotationButton = createButton("目を覚ますwithパソパソ");
+  }
   rotationButton.position(width / 2 - rotationButton.width / 2, height / 2 - rotationButton.height / 2);
   rotationButton.mousePressed(function() {
     requestMotionPermission();
