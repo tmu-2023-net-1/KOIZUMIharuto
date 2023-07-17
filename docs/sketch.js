@@ -5,6 +5,7 @@ let rotationButton;
 let layer = 1;
 var worldX = new Array(layer);
 var worldY = new Array(layer);
+let defWorldY;
 let touchIsDown = false;
 let enidingBool;
 let reverseEnding;
@@ -23,15 +24,29 @@ let prorogueWidth;
 let storyWidth;
 let endingsWidth;
 
+let leftImg;
+let rightImg;
+let footprint;
+let footprintHeight;
+
 const myURL = new URL(location.href);
+function preload(){
+  // leftImg = loadImage("images/left.png");
+  // rightImg = loadImage("images/right.png");
+  footprint = loadImage("images/right.png");
+}
 
 function setup() {
   const canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("canvas-container");
   textAlign(CENTER, CENTER);
 
+  background(backgroundBlack);
+
   enidingBool = false;
   startTime = 0;
+
+  defWorldY = height / 2;
 
   prorogueWidth = textWidth(prorogue);
   storyWidth = textWidth(story);
@@ -41,9 +56,7 @@ function setup() {
   
   rotationButton = createButton("目を覚ます");
   rotationButton.position(width / 2 - rotationButton.width / 2, height / 2 - rotationButton.height / 2);
-  // rotationButton.mousePressed(requestMotionPermission);
   rotationButton.mousePressed(function() {
-    //wait requestMotionPermission  and after that open google.com
     requestMotionPermission();
     backgroundBool = true;
   });
@@ -107,17 +120,17 @@ function draw() {
           }
         }else{
           backgroundBool = true;
-          if(!nextButtonBool) {
-            console.log(location.href);
-            let nextButton = createButton("Next");
-            nextButton.position(width / 2 - nextButton.width / 2, height / 2 - nextButton.height / 2);
-            nextButton.mousePressed(function() {
-              // location.reload();
-              // window.open("https://www.google.com/");
-              open('about:blank', '_self').close();
-            });
-            nextButtonBool = true;
-          }
+          // if(!nextButtonBool) {
+          //   console.log(location.href);
+          //   let nextButton = createButton("Next");
+          //   nextButton.position(width / 2 - nextButton.width / 2, height / 2 - nextButton.height / 2);
+          //   nextButton.mousePressed(function() {
+          //     // location.reload();
+          //     // window.open("https://www.google.com/");
+          //     open('about:blank', '_self').close();
+          //   });
+          //   nextButtonBool = true;
+          // }
 
         }
         curIndex++;
@@ -133,13 +146,30 @@ function draw() {
   textSize(20);
 
   textAlign(LEFT, TOP);
-  text(prorogue, worldX[0] - prorogueWidth/2, worldY[0]);
+  text(prorogue, worldX[0] - prorogueWidth/2, worldY[0]-75);
+
+  
+  if (!enidingBool) {
+    let repeat = 5;
+      if (curIndex % repeat == 0) {
+        storyWidth = textWidth(story.substring(0, curIndex));
+        if ((curIndex / repeat) % 2 == 0) {
+          footprint = loadImage("images/left.png");
+          footprintHeight = 10;
+        } else {
+          footprint = loadImage("images/right.png");
+          footprintHeight = -10;
+        }
+      }
+  }
+
+  image(footprint, worldX[0] + prorogueWidth / 2 + storyWidth, worldY[0] - 25 - footprintHeight, footprint.width / 4, footprint.height / 4);
 
   textAlign(RIGHT, TOP);
     text(
       reverseEnding,
       worldX[0] - prorogueWidth/2 + textWidth(prorogue),
-      worldY[0] + 200
+      worldY[0] + 75
     );
   
 
@@ -185,7 +215,8 @@ function controls() {
   }else{
     for(let i = 0; i < layer; i ++) {
       worldX[i] += 4 * rotationRateX / (25 - 5 * i);
-      worldY[i] += 4 * rotationRateZ / (25 - 5 * i);
+      defWorldY += 4 * rotationRateZ / (25 - 5 * i);
+      worldY[i] = defWorldY + worldX[i]/300
     }
   }
   if(keyIsDown(RIGHT_ARROW)) {
