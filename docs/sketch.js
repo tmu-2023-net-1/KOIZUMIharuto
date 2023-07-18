@@ -35,7 +35,7 @@ let exitButtonBool = false;
 
 const myURL = new URL(location.href);
 function preload(){
-  footprint = loadImage("images/right.png");
+  footprint = loadImage("right.png");
 }
 
 function isSmartPhone() {
@@ -178,10 +178,10 @@ function draw() {
     if (curIndex % repeat == 0) {
       storyWidth = textWidth(prorogue);
       if ((curIndex / repeat) % 2 == 0) {
-        footprint = loadImage("images/left.png");
+        footprint = loadImage("left.png");
         footprintHeight = 10;
       } else {
-        footprint = loadImage("images/right.png");
+        footprint = loadImage("right.png");
         footprintHeight = -10;
       }
     }
@@ -190,10 +190,10 @@ function draw() {
     if (curIndex % repeat == 0) {
       endingsWidth = textWidth(reverseEnding);
       if ((curIndex / repeat) % 2 == 0) {
-        footprint = loadImage("images/left2.png");
+        footprint = loadImage("left2.png");
         footprintHeight = -10;
       } else {
-        footprint = loadImage("images/right2.png");
+        footprint = loadImage("right2.png");
         footprintHeight = 10;
       }
     }
