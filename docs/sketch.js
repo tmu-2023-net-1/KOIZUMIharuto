@@ -32,6 +32,7 @@ let footprintHeight;
 let exitButtonX = 0;
 let exitButtonBool = false;
 
+
 const myURL = new URL(location.href);
 function preload(){
   footprint = loadImage("images/right.png");
@@ -46,30 +47,19 @@ function isSmartPhone() {
   }
 }
 
-
 const buttonOpen = document.getElementsByClassName('modalOpen')[0];
 const modal = document.getElementsByClassName('modal')[0];
 const buttonClose = document.getElementsByClassName('modalClose')[0];
 const body = document.getElementsByTagName('body')[0];
-
-
 const keyName = 'visited';
 const keyValue = true;
 
 if (!sessionStorage.getItem(keyName)) {
-    //sessionStorageにキーと値を追加
     sessionStorage.setItem(keyName, keyValue);
-
     if(!isSmartPhone()) {
       modal.style.display = 'block';
       body.classList.add('open');
     }
-    
-
-} else {
-    //ここに通常アクセス時の処理
-    console.log("訪問済みです");
-
 }
 
 // バツ印がクリックされた時
@@ -86,10 +76,7 @@ modal.addEventListener('click', function(){
 
 function setup() {
 
-  
-frameRate(120);
-
-
+  frameRate(120);
 
   const canvas = createCanvas(windowWidth, windowHeight);
   canvas.parent("canvas-container");
@@ -100,12 +87,10 @@ frameRate(120);
   enidingBool = false;
   startTime = 0;
 
-
   prorogueWidth = textWidth(prorogue);
   storyWidth = textWidth(story);
   
- 
-    rotationButton = createButton("目を覚ます");
+  rotationButton = createButton("目を覚ます");
   rotationButton.position(width / 2 - rotationButton.width / 2, height / 2 - rotationButton.height / 2);
   rotationButton.mousePressed(function() {
     requestMotionPermission();
@@ -172,29 +157,13 @@ function draw() {
           }
         }else{
           backgroundBool = true;
-          // if(!nextButtonBool) {
-          //   console.log(location.href);
-          //   let nextButton = createButton("Next");
-          //   nextButton.position(width / 2 - nextButton.width / 2, height / 2 - nextButton.height / 2);
-          //   nextButton.mousePressed(function() {
-          //     // location.reload();
-          //     // window.open("https://www.google.com/");
-          //     open('about:blank', '_self').close();
-          //   });
-          //   nextButtonBool = true;
-          // }
-
         }
         curIndex++;
         startTime = millis();
       }
-      
-      
-      
     }
   }
   
-
   textSize(20);
 
   textAlign(LEFT, CENTER);
@@ -207,28 +176,28 @@ function draw() {
   let positionY = 0;
   if (!enidingBool) {
     positionY = -25;
-      if (curIndex % repeat == 0) {
-        storyWidth = textWidth(prorogue);
-        if ((curIndex / repeat) % 2 == 0) {
-          footprint = loadImage("images/left.png");
-          footprintHeight = 10;
-        } else {
-          footprint = loadImage("images/right.png");
-          footprintHeight = -10;
-        }
+    if (curIndex % repeat == 0) {
+      storyWidth = textWidth(prorogue);
+      if ((curIndex / repeat) % 2 == 0) {
+        footprint = loadImage("images/left.png");
+        footprintHeight = 10;
+      } else {
+        footprint = loadImage("images/right.png");
+        footprintHeight = -10;
       }
+    }
   }else{
     positionY = 25;
-      if (curIndex % repeat == 0) {
-        endingsWidth = textWidth(reverseEnding);
-        if ((curIndex / repeat) % 2 == 0) {
-          footprint = loadImage("images/left2.png");
-          footprintHeight = -10;
-        } else {
-          footprint = loadImage("images/right2.png");
-          footprintHeight = 10;
-        }
+    if (curIndex % repeat == 0) {
+      endingsWidth = textWidth(reverseEnding);
+      if ((curIndex / repeat) % 2 == 0) {
+        footprint = loadImage("images/left2.png");
+        footprintHeight = -10;
+      } else {
+        footprint = loadImage("images/right2.png");
+        footprintHeight = 10;
       }
+    }
   }
   imageMode(CENTER);
   image(footprint, worldX[0] - prorogueWidth / 2 + storyWidth - endingsWidth, worldY[0] + positionY - footprintHeight, footprint.width / 4, footprint.height / 4);
@@ -253,13 +222,11 @@ function draw() {
       });
       exitButtonBool = true;
     }
-    
     if(exitButtonX > width / 2 - exitButton.width / 2) {
       exitButtonX -= 5;
       exitButton.position(exitButtonX, height / 2 - exitButton.height / 2);
     }
   }
-  // console.log(exitButton.position());
 }
 
 function handleMotion(event) {
