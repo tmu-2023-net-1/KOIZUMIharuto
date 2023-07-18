@@ -109,12 +109,7 @@ function setup() {
     requestMotionPermission();
     backgroundBool = true;
   });
-  exitButton = createButton("抜け出す");
-  exitButtonX = width;
-  exitButton.position(exitButtonX, height / 2 - exitButton.height / 2);
-  exitButton.mousePressed(function() {
-    open('about:blank', '_self').close();
-  });
+  
   for(let i = 0; i < layer; i ++) {
     worldX[i] = width / 2;
     worldY[i] = height / 2;
@@ -247,6 +242,12 @@ function draw() {
   line(0,worldY[0]+65,width,worldY[0]+65);
 
   if(-(worldX[0] + prorogueWidth/2) > textWidth(story) + width) {
+    exitButton = createButton("抜け出す");
+  exitButtonX = width;
+  exitButton.position(exitButtonX, height / 2 - exitButton.height / 2);
+  exitButton.mousePressed(function() {
+    open('about:blank', '_self').close();
+  });
     if(exitButtonX > width / 2 - exitButton.width / 2) {
       exitButtonX -= 3;
       exitButton.position(exitButtonX, height / 2 - exitButton.height / 2);
