@@ -51,9 +51,9 @@ const buttonOpen = document.getElementsByClassName('modalOpen')[0];
 const modal = document.getElementsByClassName('modal')[0];
 const buttonClose = document.getElementsByClassName('modalClose')[0];
 const body = document.getElementsByTagName('body')[0];
+
 const keyName = 'visited';
 const keyValue = true;
-
 if (!sessionStorage.getItem(keyName)) {
     sessionStorage.setItem(keyName, keyValue);
     if(!isSmartPhone()) {
