@@ -145,7 +145,6 @@ function draw() {
           curIndex = 0;
           startTime = millis();
         }
-        
       }
     }else{
       if(worldX[0] - prorogueWidth/2 + textWidth(prorogue) - textWidth(reverseEnding) > width/4 || millis() - startTime > speed) {
