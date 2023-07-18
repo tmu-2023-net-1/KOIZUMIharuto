@@ -87,7 +87,7 @@ modal.addEventListener('click', function(){
 function setup() {
 
   
-
+frameRate(120);
 
 
 
