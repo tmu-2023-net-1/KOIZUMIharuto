@@ -30,6 +30,8 @@ let footprint;
 let footprintHeight;
 
 let exitButtonX = 0;
+let exitButtonBool = false;
+
 const myURL = new URL(location.href);
 function preload(){
   footprint = loadImage("images/right.png");
@@ -242,12 +244,16 @@ function draw() {
   line(0,worldY[0]+65,width,worldY[0]+65);
 
   if(-(worldX[0] + prorogueWidth/2) > textWidth(story) + width) {
-    exitButton = createButton("抜け出す");
-  exitButtonX = width;
-  exitButton.position(exitButtonX, height / 2 - exitButton.height / 2);
-  exitButton.mousePressed(function() {
-    open('about:blank', '_self').close();
-  });
+    if(!exitButtonBool){
+      exitButton = createButton("抜け出す");
+      exitButtonX = width;
+      exitButton.position(exitButtonX, height / 2 - exitButton.height / 2);
+      exitButton.mousePressed(function() {
+        open('about:blank', '_self').close();
+      });
+      exitButtonBool = true;
+    }
+    
     if(exitButtonX > width / 2 - exitButton.width / 2) {
       exitButtonX -= 5;
       exitButton.position(exitButtonX, height / 2 - exitButton.height / 2);
