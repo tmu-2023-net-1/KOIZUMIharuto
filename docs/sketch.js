@@ -249,7 +249,7 @@ function draw() {
     open('about:blank', '_self').close();
   });
     if(exitButtonX > width / 2 - exitButton.width / 2) {
-      exitButtonX -= 3;
+      exitButtonX -= 5;
       exitButton.position(exitButtonX, height / 2 - exitButton.height / 2);
     }
   }
