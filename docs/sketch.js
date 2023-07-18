@@ -269,7 +269,7 @@ function handleMotion(event) {
 }
 
 function requestMotionPermission() {
-  if(!isSmartPhone()) {
+  if(isSmartPhone()) {
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
       DeviceMotionEvent.requestPermission()
         .then((state) => {
