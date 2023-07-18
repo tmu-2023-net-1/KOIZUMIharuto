@@ -269,20 +269,22 @@ function handleMotion(event) {
 }
 
 function requestMotionPermission() {
-  if (typeof DeviceMotionEvent.requestPermission === 'function') {
-    DeviceMotionEvent.requestPermission()
-      .then((state) => {
-        if (state === 'granted') {
-          window.addEventListener('devicemotion', handleMotion);
-        } else {
-          console.log('Permission denied');
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  } else {
-    console.log('Device Motion not supported');
+  if(!isSmartPhone()) {
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      DeviceMotionEvent.requestPermission()
+        .then((state) => {
+          if (state === 'granted') {
+            window.addEventListener('devicemotion', handleMotion);
+          } else {
+            console.log('Permission denied');
+          }
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    } else {
+      console.log('Device Motion not supported');
+    }
   }
 
   // ボタンを非表示にする
